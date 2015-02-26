@@ -8,7 +8,13 @@ import groovy.sql.Sql
 
 def sql = Sql.newInstance("jdbc:derby:MyDB","", "", "org.apache.derby.jdbc.EmbeddedDriver")
 
-sql.eachRow("select * from MyTable", {
+/*sql.eachRow("select * from MyTable", {
     println "likes ${it.name} ${it.id} ${it.score}"
     println it
-})
+})*/
+
+def tb = sql.dataSet("MyTable")
+def names = tb.findAll {it.name=="Wu WANG"}
+names.each{
+    println "Eat ${it}"
+}
